@@ -35,6 +35,11 @@ from database import (
 
 app = Flask(__name__)
 
+from datetime import timedelta
+
+
+app.permanent_session_lifetime = timedelta(days=30)
+
 app.secret_key = "falcon_ot_note_2026"
 # =====================================
 # Home
@@ -42,6 +47,9 @@ app.secret_key = "falcon_ot_note_2026"
 
 @app.route("/")
 def home():
+     if "employee_id" in session:
+
+        return redirect("/dashboard")
 
     return render_template("login.html")
     
@@ -111,6 +119,7 @@ def login():
     if user:
 
         session["employee_id"] = data["employee_id"]
+        session.permanent = True
         session["role"] = user[0]
 
         return jsonify({
