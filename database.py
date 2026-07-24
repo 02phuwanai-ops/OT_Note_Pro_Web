@@ -342,9 +342,11 @@ def save_ot(
 
         return True
 
-    except sqlite3.IntegrityError:
+    except mysql.connector.Error as e:
 
-        return False
+    print("MYSQL ERROR:", e)
+
+    return False
 
     finally:
 
@@ -420,8 +422,8 @@ def delete_ot(ticket, owner):
 
         """
         DELETE FROM ot_records
-        WHERE ticket = ?
-        AND owner = ?
+        WHERE ticket = %s
+        AND owner = %s
         """,
 
         (ticket, owner)
@@ -536,7 +538,7 @@ def search_ticket(keyword):
 
     FROM ot_records
 
-    WHERE ticket LIKE ?
+    WHERE ticket LIKE %s
 
     ORDER BY id DESC
 
@@ -676,8 +678,8 @@ def reset_password(employee_id, new_password):
 
         """
         UPDATE users
-        SET password = ?
-        WHERE employee_id = ?
+        SET password = %s
+        WHERE employee_id = %s
         """,
 
         (new_password, employee_id)
