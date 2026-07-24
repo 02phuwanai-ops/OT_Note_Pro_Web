@@ -40,22 +40,18 @@ app.secret_key = "falcon_ot_note_2026"
 
 app.permanent_session_lifetime = timedelta(days=30)    
 
-
-    
-
-    
 # =====================================
 # Home
 # =====================================
 
 @app.route("/")
 def home():
-     if "employee_id" in session:
+
+    if "employee_id" in session:
         return redirect("/dashboard")
 
     return render_template("login.html")
     
-
 
 # =====================================
 # Parse SMS
