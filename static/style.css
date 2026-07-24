@@ -1006,3 +1006,115 @@ cursor:pointer;
 
 
 }
+
+/* ===========================
+   Mobile Responsive
+=========================== */
+
+@media (max-width:600px){
+
+
+.login-page{
+
+    padding:20px;
+
+}
+
+
+.login-card{
+
+
+    width:100%;
+
+    max-width:420px;
+
+
+    padding:35px 25px;
+
+
+    border-radius:25px;
+
+
+}
+
+
+.login-card h1{
+
+
+    font-size:34px;
+
+
+}
+
+
+.login-card h2{
+
+
+    font-size:24px;
+
+
+}
+
+
+.login-card p{
+
+
+    font-size:17px;
+
+}
+
+
+
+.login-card input{
+
+
+    width:100%;
+
+    box-sizing:border-box;
+
+
+    padding:18px;
+
+
+    margin:12px 0;
+
+
+    font-size:20px;
+
+
+}
+
+
+
+.login-btn{
+
+
+    width:100%;
+
+
+    padding:18px;
+
+
+    font-size:22px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+.login-card a{
+
+
+    font-size:18px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+}
