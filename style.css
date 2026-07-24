@@ -1,0 +1,1008 @@
+/* =================================
+   OT Note Pro Falcon
+   Premium Mobile Style
+================================= */
+
+
+body{
+
+    margin:0;
+
+    background:#F1F5F9;
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    color:#1E293B;
+
+}
+
+
+
+/* Header */
+
+.header{
+
+    background:#0F4C81;
+
+    color:white;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:
+    0 3px 10px rgba(0,0,0,0.15);
+
+}
+
+
+.header h1{
+
+    margin:0;
+
+    font-size:32px;
+
+}
+
+
+.header p{
+
+    margin:5px;
+
+    color:#DDE7F2;
+
+}
+
+
+
+/* Main Card */
+
+.card{
+
+    background:white;
+
+    margin:20px auto;
+
+    padding:25px;
+
+    width:90%;
+
+    max-width:900px;
+
+    border-radius:15px;
+
+    box-shadow:
+
+    0 5px 20px rgba(0,0,0,0.12);
+
+}
+
+
+
+/* Text Area */
+
+textarea{
+
+    width:100%;
+
+    height:120px;
+
+    resize:none;
+
+    padding:12px;
+
+    font-size:15px;
+
+    border-radius:10px;
+
+    border:1px solid #CBD5E1;
+
+    box-sizing:border-box;
+
+}
+
+
+
+/* Form Grid */
+
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    1fr 1fr;
+
+    gap:15px;
+
+}
+
+
+
+.form-grid div{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+.form-grid label{
+
+    font-weight:600;
+
+    margin-bottom:5px;
+
+}
+
+input{
+
+    padding:10px;
+
+    border-radius:8px;
+
+    border:
+
+    1px solid #CBD5E1;
+
+    font-size:15px;
+
+}
+
+
+
+.form-grid .full{
+
+    grid-column:
+
+    1 / 3;
+
+}
+
+
+
+
+
+/* Buttons */
+
+
+button{
+
+
+    border:none;
+
+    padding:
+
+    12px 25px;
+
+
+    margin-top:15px;
+
+
+    border-radius:12px;
+
+
+    font-size:16px;
+
+
+    font-weight:bold;
+
+
+    cursor:pointer;
+
+
+    transition:0.2s;
+
+
+}
+
+
+
+button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+
+/* Parse Button */
+
+.blue{
+
+    background:#2563EB;
+
+    color:white;
+
+}
+
+
+/* Save Button */
+
+.green{
+
+    background:#16A34A;
+
+    color:white;
+
+}
+
+
+
+/* =======================================
+   TABLE
+======================================= */
+
+.table-wrapper{
+
+    width:100%;
+
+    margin-top:15px;
+
+    overflow-x:auto;
+
+    border-radius:12px;
+
+    border:1px solid #E5E7EB;
+
+    background:white;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    table-layout:fixed;
+
+}
+
+thead{
+
+    background:#174A7C;
+
+    color:white;
+
+    position:sticky;
+
+    top:0;
+
+}
+
+th{
+
+    padding:14px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    border-right:1px solid rgba(255,255,255,.15);
+
+}
+
+td{
+
+    padding:12px;
+
+    text-align:center;
+
+    border-bottom:1px solid #ECECEC;
+
+    font-size:14px;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:#FAFBFC;
+
+}
+
+tbody tr:hover{
+
+    background:#EAF4FF;
+
+    transition:.2s;
+
+}
+
+tbody tr{
+
+    transition:.2s;
+
+}
+
+/* ===== Column Width ===== */
+
+#records th:nth-child(1),
+#records td:nth-child(1){
+
+    width:18%;
+
+}
+
+#records th:nth-child(2),
+#records td:nth-child(2){
+
+    width:14%;
+
+}
+
+#records th:nth-child(3),
+#records td:nth-child(3){
+
+    width:12%;
+
+}
+
+#records th:nth-child(4),
+#records td:nth-child(4){
+
+    width:8%;
+
+}
+
+#records th:nth-child(5),
+#records td:nth-child(5){
+
+    width:8%;
+
+}
+
+#records th:nth-child(6),
+#records td:nth-child(6){
+
+    width:7%;
+
+}
+
+#records th:nth-child(7),
+#records td:nth-child(7){
+
+    width:13%;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+}
+
+#records th:nth-child(8),
+#records td:nth-child(8){
+
+    width:10%;
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:700px){
+
+
+    .form-grid{
+
+        grid-template-columns:
+
+        1fr;
+
+    }
+
+
+    .form-grid .full{
+
+        grid-column:
+
+        1;
+
+    }
+
+
+    table{
+
+        font-size:12px;
+
+        overflow:auto;
+
+    }
+
+
+    .card{
+
+        width:95%;
+
+        padding:15px;
+
+    }
+
+}
+
+.red{
+
+    background:#DC2626;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:10px 18px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.red:hover{
+
+    background:#B91C1C;
+
+    transform:scale(1.05);
+
+}
+
+
+.orange{
+
+    background:#F59E0B;
+
+    color:white;
+
+}
+
+.orange:hover{
+
+    background:#D97706;
+
+}
+
+.button-bar{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:15px;
+
+    margin-top:25px;
+
+    margin-bottom:30px;
+
+}
+
+.table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+    max-height:420px;
+}
+
+/* ลดความกว้างคอลัมน์ Detail */
+
+#records th:nth-child(7),
+#records td:nth-child(7){
+
+    width:80px;
+
+    max-width:80px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+}
+
+/* ===================================== */
+/* Mobile Responsive */
+/* ===================================== */
+
+
+@media screen and (max-width: 768px){
+
+
+    body{
+
+        padding:10px;
+
+    }
+
+
+
+    .header{
+
+        text-align:center;
+
+        padding:15px;
+
+    }
+
+
+
+    .header h1{
+
+        font-size:24px;
+
+    }
+
+
+
+    .card{
+
+        width:100%;
+
+        padding:15px;
+
+        box-sizing:border-box;
+
+    }
+
+
+
+    textarea{
+
+        width:100%;
+
+        min-height:120px;
+
+        font-size:16px;
+
+    }
+
+
+
+    .form-grid{
+
+        display:block;
+
+    }
+
+
+
+    .field{
+
+        width:100%;
+
+        margin-bottom:15px;
+
+    }
+
+
+
+    .field input{
+
+        width:100%;
+
+        height:42px;
+
+        font-size:16px;
+
+        box-sizing:border-box;
+
+    }
+
+
+
+    .field textarea{
+
+        width:100%;
+
+    }
+
+
+
+    .button-bar{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+
+
+    .button-bar button{
+
+        width:100%;
+
+        height:45px;
+
+        font-size:16px;
+
+    }
+
+
+
+    .table-wrapper{
+
+        overflow-x:auto;
+
+        width:100%;
+
+    }
+
+
+
+    table{
+
+        min-width:800px;
+
+    }
+
+
+
+    th,
+    td{
+
+        white-space:nowrap;
+
+        padding:10px;
+
+    }
+
+
+}
+
+/* ===================================== */
+/* Mobile Header */
+/* ===================================== */
+
+
+@media screen and (max-width:768px){
+
+
+.header{
+
+    border-radius:15px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.header button{
+
+    width:100%;
+
+    margin-top:10px;
+
+}
+
+
+
+.header p{
+
+    margin:5px;
+
+    font-size:14px;
+
+}
+
+
+}
+
+/* ===================================== */
+/* Mobile OT Table */
+/* ===================================== */
+
+
+.mobile-table{
+
+    overflow-x:auto;
+
+    border-radius:12px;
+
+}
+
+
+
+.mobile-table table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+
+.mobile-table th{
+
+    background:#1f6feb;
+
+    color:white;
+
+}
+
+
+
+.mobile-table td,
+.mobile-table th{
+
+    padding:10px;
+
+    text-align:center;
+
+}
+
+
+
+@media screen and (max-width:768px){
+
+
+    .mobile-table table{
+
+        min-width:900px;
+
+    }
+
+
+    .mobile-table button{
+
+        min-width:80px;
+
+        height:38px;
+
+        font-size:14px;
+
+    }
+
+
+}
+
+/* ===========================
+   Falcon Enterprise Login
+=========================== */
+
+
+.login-page{
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+
+background:
+
+linear-gradient(
+135deg,
+#ffd6e8,
+#cfe8ff
+);
+
+font-family:
+
+Segoe UI,
+sans-serif;
+
+}
+
+
+
+.login-card{
+
+
+width:380px;
+
+
+padding:40px;
+
+
+background:white;
+
+
+border-radius:25px;
+
+
+box-shadow:
+
+0 20px 50px rgba(0,0,0,.15);
+
+
+text-align:center;
+
+
+}
+
+
+
+.login-card h1{
+
+
+font-size:38px;
+
+
+margin-bottom:5px;
+
+
+color:#5567ff;
+
+
+}
+
+
+
+.login-card h2{
+
+
+margin-top:0;
+
+
+color:#777;
+
+
+font-weight:500;
+
+
+}
+
+
+
+.login-card p{
+
+
+color:#999;
+
+
+margin-bottom:30px;
+
+
+}
+
+
+
+.login-card input{
+
+
+width:90%;
+
+
+padding:14px;
+
+
+margin:10px;
+
+
+border-radius:12px;
+
+
+border:
+
+1px solid #ddd;
+
+
+font-size:16px;
+
+
+}
+
+
+
+.login-btn{
+
+
+width:95%;
+
+
+padding:14px;
+
+
+margin-top:20px;
+
+
+border:none;
+
+
+border-radius:15px;
+
+
+background:
+
+linear-gradient(
+135deg,
+#7aa8ff,
+#ff9fd6
+);
+
+
+color:white;
+
+
+font-size:18px;
+
+
+cursor:pointer;
+
+
+}
+
+
+
+.login-btn:hover{
+
+
+opacity:.9;
+
+
+}
+
+
+
+.login-card a{
+
+
+display:block;
+
+
+margin-top:20px;
+
+
+color:#667;
+
+
+text-decoration:none;
+
+
+}
+
+/* ===========================
+ Register Button
+=========================== */
+
+
+.register-btn{
+
+
+width:95%;
+
+padding:14px;
+
+border:none;
+
+border-radius:15px;
+
+
+background:
+
+linear-gradient(
+135deg,
+#ffb3d9,
+#9fd8ff
+);
+
+
+color:white;
+
+
+font-size:18px;
+
+
+cursor:pointer;
+
+
+}
