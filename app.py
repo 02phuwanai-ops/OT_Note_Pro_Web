@@ -35,12 +35,12 @@ from database import (
 
 app = Flask(__name__)
 
-from datetime import timedelta
+    from datetime import timedelta
 
 
-app.permanent_session_lifetime = timedelta(days=30)
+    app.permanent_session_lifetime = timedelta(days=30)
 
-app.secret_key = "falcon_ot_note_2026"
+    app.secret_key = "falcon_ot_note_2026"
 # =====================================
 # Home
 # =====================================
