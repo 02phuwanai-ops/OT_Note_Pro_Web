@@ -344,9 +344,9 @@ def save_ot(
 
     except mysql.connector.Error as e:
 
-    print("MYSQL ERROR:", e)
-
-    return False
+        print("MYSQL ERROR:", e)
+    
+        return False
 
     finally:
 
