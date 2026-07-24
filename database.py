@@ -19,6 +19,13 @@ DB_NAME = "ot_note.db"
 
 def connect():
 
+    print(
+        "DB:",
+        os.getenv("DB_HOST"),
+        os.getenv("DB_PORT"),
+        os.getenv("DB_NAME")
+    )
+
     return mysql.connector.connect(
 
         host=os.getenv("DB_HOST"),
