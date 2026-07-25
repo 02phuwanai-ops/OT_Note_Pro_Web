@@ -50,7 +50,7 @@ def init_db():
 
     employee_id INT,
 
-    ticket VARCHAR(100)
+    ticket VARCHAR(100),
 
     circuit VARCHAR(100),
 
@@ -318,9 +318,8 @@ def save_ot(
         )
 
         VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
-                
 
-        """,(
+        """, (
 
             ticket,
             circuit,
@@ -337,15 +336,17 @@ def save_ot(
 
         return True
 
-        except mysql.connector.Error as e:
+
+    except mysql.connector.Error as e:
 
         print("MYSQL ERROR:", e)
 
         return False
 
+
     finally:
 
-        conn.close()
+        conn.close()   
 
 
 # ==========================================
