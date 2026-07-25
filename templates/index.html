@@ -260,6 +260,7 @@ function parseSMS(){
 
     let sms = document.getElementById("sms").value;
 
+
     fetch("/parse",{
 
         method:"POST",
@@ -272,26 +273,46 @@ function parseSMS(){
 
     })
 
+
     .then(response=>response.json())
+
 
     .then(data=>{
 
-        let inputs=document.querySelectorAll("input");
 
-        inputs[0].value=data.ticket || "";
-        inputs[1].value=data.circuit || "";
-        inputs[2].value=data.fault_date || "";
-        inputs[3].value=data.start_time || "";
+        console.log(data);
 
-        // Detail ไม่ Parse จาก SMS
-        document.getElementById("detail").value="";
+
+        document.getElementById("ticket").value =
+            data.ticket || "";
+
+
+        document.getElementById("circuit").value =
+            data.circuit || "";
+
+
+        document.getElementById("fault_date").value =
+            data.fault_date || "";
+
+
+        document.getElementById("start_time").value =
+            data.start_time || "";
+
+
+        document.getElementById("finish_time").value =
+            data.finish_time || "";
+
+
+        document.getElementById("detail").value =
+            "";
+
 
         calculateOT();
+
 
     });
 
 }
-
 
 
 // ======================================
