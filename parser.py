@@ -94,16 +94,23 @@ def parse_sms(text: str):
 
     if circuit:
 
-        result["circuit"] = circuit.group(1)
+        result["circuit"] = circuit.group(1).strip()
 
 
     else:
 
-
         for line in lines:
 
+            line = line.strip()
 
-            # เช่น
+
+            # ข้าม Ticket
+
+            if line == result["ticket"]:
+                continue
+
+
+            # Circuit รูปแบบจริง
             # V96474B
             # I06217B
             # WDS52081
@@ -111,18 +118,15 @@ def parse_sms(text: str):
 
             if re.match(
 
-                r"^[A-Z]+\d+[A-Z0-9]*$",
+                r"^[A-Z]{1,4}\d{3,8}[A-Z0-9]*$",
 
                 line
 
             ):
 
+                result["circuit"] = line
 
-                if line != result["ticket"]:
-
-                    result["circuit"] = line
-
-                    break
+                break
 
 
 
@@ -148,7 +152,6 @@ def parse_sms(text: str):
         result["start_time"] = fault.group(2)
 
 
-
     else:
 
 
@@ -170,12 +173,12 @@ def parse_sms(text: str):
 
 
     # ======================================
-    # Start - Finish Time
+    # Start Finish
     # ======================================
 
     time_range = re.search(
 
-        r"(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2})",
+        r"(\d{2}:\d{2})\s*[-]\s*(\d{2}:\d{2})",
 
         text
 
@@ -187,10 +190,6 @@ def parse_sms(text: str):
         result["start_time"] = time_range.group(1)
 
         result["finish_time"] = time_range.group(2)
-
-
-
-    return result
 
 
 
