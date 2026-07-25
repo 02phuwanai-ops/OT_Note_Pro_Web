@@ -283,28 +283,21 @@ function parseSMS(){
         console.log(data);
 
 
-        document.getElementById("ticket").value =
-            data.ticket || "";
+        let inputs=document.querySelectorAll("input");
 
 
-        document.getElementById("circuit").value =
-            data.circuit || "";
+        inputs[0].value=data.ticket || "";
+
+        inputs[1].value=data.circuit || "";
+
+        inputs[2].value=data.fault_date || "";
+
+        inputs[3].value=data.start_time || "";
+
+        inputs[4].value=data.finish_time || "";
 
 
-        document.getElementById("fault_date").value =
-            data.fault_date || "";
-
-
-        document.getElementById("start_time").value =
-            data.start_time || "";
-
-
-        document.getElementById("finish_time").value =
-            data.finish_time || "";
-
-
-        document.getElementById("detail").value =
-            "";
+        document.getElementById("detail").value="";
 
 
         calculateOT();
