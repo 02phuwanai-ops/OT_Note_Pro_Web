@@ -539,20 +539,30 @@ function loadRecords(){
                 inputs[4].value=row[4] || "";
                 inputs[5].value=row[5] || "";
 
-                document.getElementById("detail").value=row[7] || "";
+                document.getElementById("detail").value = row[6] || "";
 
             };
 
-            // แสดงข้อมูลแต่ละคอลัมน์
-            for(let i=1;i<row.length;i++){
+            // แสดงเฉพาะ 7 คอลัมน์
+            const columns = [
+                row[0], // Ticket
+                row[1], // Circuit
+                row[2], // Fault Date
+                row[3], // Start
+                row[4], // Finish
+                row[5], // Hour
+                row[6]  // Detail
+            ];
 
-                let td=document.createElement("td");
+            columns.forEach(col => {
 
-                td.innerText=row[i] || "";
+                let td = document.createElement("td");
+
+                td.innerText = col || "";
 
                 tr.appendChild(td);
 
-            }
+            });
 
             // Action
             let action=document.createElement("td");
