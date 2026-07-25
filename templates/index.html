@@ -539,20 +539,20 @@ function loadRecords(){
                 inputs[4].value=row[4] || "";
                 inputs[5].value=row[5] || "";
 
-                document.getElementById("detail").value=row[6] || "";
+                document.getElementById("detail").value=row[7] || "";
 
             };
 
             // แสดงข้อมูลแต่ละคอลัมน์
-            row.forEach(col=>{
+            for(let i=1;i<row.length;i++){
 
                 let td=document.createElement("td");
 
-                td.innerText=col || "";
+                td.innerText=row[i] || "";
 
                 tr.appendChild(td);
 
-            });
+            }
 
             // Action
             let action=document.createElement("td");
@@ -560,7 +560,7 @@ function loadRecords(){
             action.innerHTML=`
                 <button
                     class="red"
-                    onclick="event.stopPropagation();deleteOT('${row[0]}')">
+                    onclick="event.stopPropagation();deleteOT(${row[0]})">
                     🗑 Delete
                 </button>
             `;
@@ -581,21 +581,27 @@ function loadRecords(){
 // Delete
 // ======================================
 
-function deleteOT(ticket){
+function deleteOT(id){
 
-    if(!confirm("ต้องการลบ " + ticket + " ?")){
-
+    if(!confirm("ต้องการลบรายการนี้ ?")){
         return;
-
     }
 
-    fetch("/delete/" + ticket,{
+    fetch("/delete",{
 
-        method:"DELETE"
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+            id:id
+        })
 
     })
 
-    .then(response=>response.json())
+    .then(r=>r.json())
 
     .then(result=>{
 
@@ -607,8 +613,7 @@ function deleteOT(ticket){
 
             loadRecords();
 
-        }
-        else{
+        }else{
 
             alert("ไม่สามารถลบข้อมูลได้");
 
