@@ -25,21 +25,17 @@ from database import (
     delete_user,
     reset_password,
     get_all_records,
+    get_recent
 
 )
 
 # ถ้ายังไม่มีไฟล์ excel.py ให้คอมเมนต์บรรทัดนี้ไว้ก่อน
 # from excel import export_excel
 
-from datetime import timedelta
-
 
 app = Flask(__name__)
 
 app.secret_key = "falcon_ot_note_2026"
-
-app.permanent_session_lifetime = timedelta(days=30)    
-
 # =====================================
 # Home
 # =====================================
@@ -47,11 +43,9 @@ app.permanent_session_lifetime = timedelta(days=30)
 @app.route("/")
 def home():
 
-    if "employee_id" in session:
-        return redirect("/dashboard")
-
     return render_template("login.html")
     
+
 
 # =====================================
 # Parse SMS
@@ -117,7 +111,6 @@ def login():
     if user:
 
         session["employee_id"] = data["employee_id"]
-        session.permanent = True
         session["role"] = user[0]
 
         return jsonify({
@@ -306,21 +299,21 @@ def export_txt():
 # Delete OT
 # =====================================
 
-@app.route("/delete/<ticket>", methods=["DELETE"])
-def delete(ticket):
+@app.route("/delete", methods=["POST"])
+def delete():
 
-    delete_ot(
+    if "employee_id" not in session:
+        return jsonify({
+            "success": False,
+            "message": "Please login"
+        })
 
-    ticket,
+    data = request.json
 
-    session["employee_id"]
-
-)
+    delete_ot(data["id"])
 
     return jsonify({
-
         "success": True
-
     })
 
 # =====================================

@@ -19,13 +19,6 @@ DB_NAME = "ot_note.db"
 
 def connect():
 
-    print(
-        "DB:",
-        os.getenv("DB_HOST"),
-        os.getenv("DB_PORT"),
-        os.getenv("DB_NAME")
-    )
-
     return mysql.connector.connect(
 
         host=os.getenv("DB_HOST"),
@@ -55,7 +48,9 @@ def init_db():
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 
-    ticket VARCHAR(50) UNIQUE,
+    employee_id INT,
+
+    ticket VARCHAR(100)
 
     circuit VARCHAR(100),
 
@@ -342,10 +337,10 @@ def save_ot(
 
         return True
 
-    except mysql.connector.Error as e:
+        except mysql.connector.Error as e:
 
         print("MYSQL ERROR:", e)
-    
+
         return False
 
     finally:
@@ -412,26 +407,20 @@ def update_ot(
 # Delete OT
 # ==========================================
 
-def delete_ot(ticket, owner):
+def delete_ot(record_id):
 
     conn = connect()
-
     cur = conn.cursor()
 
     cur.execute(
-
         """
         DELETE FROM ot_records
-        WHERE ticket = %s
-        AND owner = %s
+        WHERE id=%s
         """,
-
-        (ticket, owner)
-
+        (record_id,)
     )
 
     conn.commit()
-
     conn.close()
 
 
@@ -449,6 +438,7 @@ def get_recent(owner, limit=20):
 
     SELECT
 
+        id,
         ticket,
         circuit,
         fault_date,
@@ -492,7 +482,7 @@ def get_all_records():
     cur.execute("""
 
     SELECT
-
+        id,
         ticket,
         circuit,
         fault_date,
@@ -528,6 +518,7 @@ def search_ticket(keyword):
 
     SELECT
 
+        id,
         ticket,
         circuit,
         fault_date,
