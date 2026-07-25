@@ -41,6 +41,19 @@ def parse_sms(text: str):
 
     )
 
+    # ถ้าไม่ใช่รูปแบบ SMS ให้หา TTxxxxxxxxxxxx
+    if not ticket:
+
+        ticket = re.search(
+
+            r"\b(TT\d{12})\b",
+
+            text,
+
+            re.IGNORECASE
+
+        )
+
     if ticket:
 
         result["ticket"] = ticket.group(1).strip()
@@ -58,6 +71,17 @@ def parse_sms(text: str):
         re.IGNORECASE
 
     )
+
+    # ถ้าไม่พบแบบ SMS
+    if not circuit:
+
+        circuit = re.search(
+
+            r"\b([A-Z]{1,3}\d{4,6}[A-Z])\b",
+
+            text
+
+        )
 
     if circuit:
 

@@ -4,6 +4,7 @@ from flask import (
     jsonify,
     render_template,
     send_file,
+    send_from_directory,
     redirect,
     session,
 )
@@ -28,6 +29,7 @@ from database import (
     get_recent
 
 )
+
 
 # ถ้ายังไม่มีไฟล์ excel.py ให้คอมเมนต์บรรทัดนี้ไว้ก่อน
 # from excel import export_excel
@@ -454,7 +456,14 @@ def export():
         as_attachment=True
     )
 """
+# =====================================
+# PWA Manifest
+# =====================================
 
+@app.route("/manifest.json")
+def manifest():
+
+    return send_from_directory(".", "manifest.json")
 
 # =====================================
 # Main
