@@ -76,6 +76,36 @@ def parse_sms(text: str):
                 break
 
 
+    # ======================================
+    # Single Line Format
+    # Ticket Circuit Date Time
+    # ======================================
+
+    single_line = re.search(
+
+        r"(TT\d+)\s+([A-Z]{1,5}\d+[A-Z0-9]*)\s+(\d{2}/\d{2}/\d{2})\s+(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2})",
+
+        text,
+
+        re.IGNORECASE
+
+    )
+
+
+    if single_line:
+
+        result["ticket"] = single_line.group(1)
+
+        result["circuit"] = single_line.group(2)
+
+        result["fault_date"] = single_line.group(3)
+
+        result["start_time"] = single_line.group(4)
+
+        result["finish_time"] = single_line.group(5)
+
+        return result
+
 
     # ======================================
     # Circuit
