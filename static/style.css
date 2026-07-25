@@ -41,6 +41,8 @@ body{
     box-shadow:
     0 3px 10px rgba(0,0,0,0.15);
 
+    border-radius:0;
+
 }
 
 
@@ -677,12 +679,13 @@ tbody tr{
 
 @media screen and (max-width:768px){
 
-
 .header{
 
-    border-radius:15px;
+    border-radius:0;
 
     margin-bottom:15px;
+
+}
 
 }
 
