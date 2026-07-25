@@ -439,14 +439,14 @@ def get_recent(owner, limit=20):
 
     SELECT
 
-        id,
         ticket,
         circuit,
         fault_date,
         start_time,
         finish_time,
         hours,
-        description
+        description,
+        id
 
     FROM ot_records
 
@@ -483,14 +483,15 @@ def get_all_records():
     cur.execute("""
 
     SELECT
-        id,
+       
         ticket,
         circuit,
         fault_date,
         start_time,
         finish_time,
         hours,
-        description
+        description,
+        id
 
     FROM ot_records
 
@@ -519,14 +520,14 @@ def search_ticket(keyword):
 
     SELECT
 
-        id,
         ticket,
         circuit,
         fault_date,
         start_time,
         finish_time,
         hours,
-        description
+        description,
+        id
 
     FROM ot_records
 
