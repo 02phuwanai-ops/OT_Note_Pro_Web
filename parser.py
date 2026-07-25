@@ -191,7 +191,7 @@ def parse_sms(text: str):
 
         result["finish_time"] = time_range.group(2)
 
-
+    return result
 
 # ==========================================
 # Test Parser
