@@ -107,56 +107,39 @@ def parse_sms(text: str):
         return result
 
 
-    # ======================================
-    # Circuit
-    # ======================================
+# ======================================
+# Circuit Detection
+# ======================================
 
-    circuit = re.search(
+    circuit_patterns = [
 
-        r"Circuit\s*:\s*([A-Z0-9]+)",
-
-        text,
-
-        re.IGNORECASE
-
-    )
+        # WDS51358
+        r"\b(WDS\d{4,8})\b",
 
 
-    if circuit:
-
-        result["circuit"] = circuit.group(1).strip()
-
-
-    else:
-
-        for line in lines:
-
-            line = line.strip()
+        # V12345B / I12345B / U12345B / O12345B
+        r"\b([VIUOJ]\d{4,8}B)\b",
 
 
-            # ข้าม Ticket
+        # J03429 / J03429B
+        r"\b(J\d{4,8}B?)\b"
 
-            if line == result["ticket"]:
-                continue
+    ]
 
 
-            # Circuit รูปแบบจริง
-            # V96474B
-            # I06217B
-            # WDS52081
-            # J03429
+    for pattern in circuit_patterns:
 
-            if re.match(
+        circuit = re.search(
+            pattern,
+            text,
+            re.IGNORECASE
+        )
 
-                r"^[A-Z]{1,4}\d{3,8}[A-Z0-9]*$",
+        if circuit:
 
-                line
+            result["circuit"] = circuit.group(1).upper()
 
-            ):
-
-                result["circuit"] = line
-
-                break
+            break
 
 
 
