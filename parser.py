@@ -38,12 +38,13 @@ def parse_sms(text: str):
 
 
     # ======================================
-    # Ticket
+    # Ticket Detection
     # ======================================
 
+    # 1. Incident ID
     ticket = re.search(
 
-        r"Ticket\s*:\s*(TT\d+)",
+        r"Incident\s*ID\s*:\s*(INC\d+)",
 
         text,
 
@@ -51,29 +52,35 @@ def parse_sms(text: str):
 
     )
 
+    # 2. Ticket:
+    if not ticket:
+
+        ticket = re.search(
+
+            r"Ticket\s*:\s*(TT\d+)",
+
+            text,
+
+            re.IGNORECASE
+
+        )
+
+    # 3. TTxxxxxxxx
+    if not ticket:
+
+        ticket = re.search(
+
+            r"\b(TT\d{12})\b",
+
+            text,
+
+            re.IGNORECASE
+
+        )
 
     if ticket:
 
-        result["ticket"] = ticket.group(1)
-
-
-    else:
-
-        for line in lines:
-
-            if re.match(
-
-                r"^TT\d+$",
-
-                line,
-
-                re.IGNORECASE
-
-            ):
-
-                result["ticket"] = line
-
-                break
+        result["ticket"] = ticket.group(1).upper()
 
 
     # ======================================
