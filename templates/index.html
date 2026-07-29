@@ -279,11 +279,19 @@ function parseSMS(){
 
     .then(data=>{
 
+    console.log("PARSE RESULT:", data);
 
-        console.log(data);
+
+    if(!data){
+
+        alert("Parser ไม่ได้ส่งข้อมูลกลับมา");
+
+        return;
+
+    }
 
 
-        let inputs=document.querySelectorAll("input");
+    let inputs=document.querySelectorAll("input");
 
 
         inputs[0].value=data.ticket || "";
@@ -535,11 +543,10 @@ function loadRecords(){
 
         data.forEach(row=>{
 
-            if(!row[0]){
-                return;
-            }
+            console.log(row);
 
             let tr=document.createElement("tr");
+            
 
             // เมื่อคลิกแถว
             tr.onclick=function(){
@@ -568,11 +575,28 @@ function loadRecords(){
                 row[6]  // Detail
             ];
 
-            columns.forEach(col => {
+            columns.forEach((col, index) => {
 
                 let td = document.createElement("td");
 
-                td.innerText = col || "";
+                // คอลัมน์แรก = Ticket
+                if(index === 0){
+
+                    if(col === null || col === undefined || String(col).trim() === ""){
+
+                        td.innerHTML = '<span class="no-ticket">⚠ No Ticket</span>';
+
+                    }else{
+
+                        td.textContent = col;
+
+                    }
+
+                }else{
+
+                    td.textContent = (col ?? "");
+
+                }
 
                 tr.appendChild(td);
 
