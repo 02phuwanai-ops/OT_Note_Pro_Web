@@ -208,11 +208,21 @@
         <!-- Records -->
         <!-- ====================================== -->
 
-        <h2 class="table-title">
+        <div class="records-header">
 
-            📋 Recent OT Records
+            <h2 class="table-title">
 
-        </h2>
+                📋 Recent OT Records
+
+            </h2>
+
+            <div class="ot-summary" id="totalHours">
+
+                🟢 0.00 hrs
+
+            </div>
+
+        </div>
 
         <div class="table-wrapper mobile-table">
 
@@ -540,6 +550,17 @@ function loadRecords(){
         let table=document.getElementById("records");
 
         table.innerHTML="";
+
+        fetch("/summary")
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            document.getElementById("totalHours").innerHTML =
+                `🟢 ${Number(data.hours).toFixed(2)} hrs`;
+
+        });
 
         data.forEach(row=>{
 
