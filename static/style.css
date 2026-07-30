@@ -1087,6 +1087,7 @@ body{
     font-size:12px;
     font-weight:bold;
     display:inline-block;
+    margin-right:10px;
 
 }
 
@@ -1097,10 +1098,11 @@ body{
 .ticket-badge{
 
     display:inline-block;
-    padding:6px 12px;
+    padding:6px 14px;
     border-radius:18px;
     font-size:13px;
     font-weight:bold;
+    margin-right:10px;
 
 }
 
