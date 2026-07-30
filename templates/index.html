@@ -594,21 +594,28 @@ function loadRecords(){
                         if(ticket.startsWith("TT")){
 
                             td.innerHTML =
-                            `<span class="ticket-badge ticket-normal">${ticket}</span>`;
+                            `<span class="ticket-badge ticket-normal"
+                            title="${ticket}">
+                            🎫 ...${ticket.slice(-5)}
+                            </span>`;
 
                         }
-
                         else if(ticket.startsWith("INC")){
 
                             td.innerHTML =
-                            `<span class="ticket-badge ticket-inc">${ticket}</span>`;
+                            `<span class="ticket-badge ticket-inc"
+                            title="${ticket}">
+                            🔵 ${ticket}
+                            </span>`;
 
                         }
-
                         else{
 
                             td.innerHTML =
-                            `<span class="ticket-badge ticket-install">${ticket}</span>`;
+                            `<span class="ticket-badge ticket-install"
+                            title="${ticket}">
+                            🛠 ${ticket}
+                            </span>`;
 
                         }
 
