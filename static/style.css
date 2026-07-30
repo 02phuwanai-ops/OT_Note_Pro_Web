@@ -330,17 +330,25 @@ tbody tr{
 
 /* ===== Column Width ===== */
 
+/* Ticket */
+
 #records th:nth-child(1),
 #records td:nth-child(1){
 
-    width:18%;
+    width:22%;
+
+    min-width:180px;
 
 }
+
+/* Circuit */
 
 #records th:nth-child(2),
 #records td:nth-child(2){
 
-    width:14%;
+    width:18%;
+
+    min-width:140px;
 
 }
 
@@ -354,14 +362,14 @@ tbody tr{
 #records th:nth-child(4),
 #records td:nth-child(4){
 
-    width:8%;
+    width:ุ6%;
 
 }
 
 #records th:nth-child(5),
 #records td:nth-child(5){
 
-    width:8%;
+    width:6%;
 
 }
 
