@@ -330,25 +330,19 @@ tbody tr{
 
 /* ===== Column Width ===== */
 
-/* Ticket */
-
 #records th:nth-child(1),
 #records td:nth-child(1){
 
-    width:22%;
-
-    min-width:180px;
+    width:18%;
+    text-align:left;
+    padding-left:12px;
 
 }
-
-/* Circuit */
 
 #records th:nth-child(2),
 #records td:nth-child(2){
 
-    width:18%;
-
-    min-width:140px;
+    width:14%;
 
 }
 
@@ -362,14 +356,14 @@ tbody tr{
 #records th:nth-child(4),
 #records td:nth-child(4){
 
-    width:ุ6%;
+    width:8%;
 
 }
 
 #records th:nth-child(5),
 #records td:nth-child(5){
 
-    width:6%;
+    width:8%;
 
 }
 
@@ -1087,7 +1081,6 @@ body{
     font-size:12px;
     font-weight:bold;
     display:inline-block;
-    margin-right:10px;
 
 }
 
@@ -1098,11 +1091,22 @@ body{
 .ticket-badge{
 
     display:inline-block;
-    padding:6px 14px;
+
+    max-width:160px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    padding:6px 10px;
+
     border-radius:18px;
+
     font-size:13px;
+
     font-weight:bold;
-    margin-right:10px;
 
 }
 
