@@ -584,11 +584,33 @@ function loadRecords(){
 
                     if(col === null || col === undefined || String(col).trim() === ""){
 
-                        td.innerHTML = '<span class="no-ticket">⚠ No Ticket</span>';
+                        td.innerHTML =
+                        '<span class="ticket-badge ticket-manual">🛠 Manual Job</span>';
 
                     }else{
 
-                        td.textContent = col;
+                        let ticket = String(col).trim();
+
+                        if(ticket.startsWith("TT")){
+
+                            td.innerHTML =
+                            `<span class="ticket-badge ticket-normal">${ticket}</span>`;
+
+                        }
+
+                        else if(ticket.startsWith("INC")){
+
+                            td.innerHTML =
+                            `<span class="ticket-badge ticket-inc">${ticket}</span>`;
+
+                        }
+
+                        else{
+
+                            td.innerHTML =
+                            `<span class="ticket-badge ticket-install">${ticket}</span>`;
+
+                        }
 
                     }
 
