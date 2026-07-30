@@ -183,12 +183,18 @@ def save():
 
         data = request.json
 
+        ticket = (data.get("ticket") or "").strip()
+
+        if ticket == "":
+
+            ticket = None
+
         print("DATA FROM WEB:")
         print(data)
 
         result = save_ot(
 
-            data["ticket"],
+            ticket,
             data["circuit"],
             data["fault_date"],
             data["start_time"],
@@ -244,6 +250,9 @@ def records():
 # Export TXT
 # ==========================================
 
+from datetime import datetime
+
+
 @app.route("/export")
 def export_txt():
 
@@ -261,11 +270,15 @@ def export_txt():
     )
 
 
-    filename = "OT_Report.txt"
+    # ชื่อไฟล์ตามวันที่ปัจจุบัน
+    export_name = datetime.now().strftime("OT_%d-%m-%Y.txt")
+
+    # ไฟล์ชั่วคราวใน Server
+    temp_filename = "OT_Report.txt"
 
 
     with open(
-        filename,
+        temp_filename,
         "w",
         encoding="utf-8"
     ) as f:
@@ -302,9 +315,11 @@ def export_txt():
 
     return send_file(
 
-        filename,
+        temp_filename,
 
-        as_attachment=True
+        as_attachment=True,
+
+        download_name=export_name
 
     )
 
