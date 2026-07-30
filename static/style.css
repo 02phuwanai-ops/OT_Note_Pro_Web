@@ -1081,3 +1081,45 @@ body{
     display:inline-block;
 
 }
+
+/* ===============================
+   Ticket Badge
+=============================== */
+
+.ticket-badge{
+
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:18px;
+    font-size:13px;
+    font-weight:bold;
+
+}
+
+.ticket-normal{
+
+    background:#DCFCE7;
+    color:#166534;
+
+}
+
+.ticket-inc{
+
+    background:#DBEAFE;
+    color:#1D4ED8;
+
+}
+
+.ticket-manual{
+
+    background:#FEF3C7;
+    color:#B45309;
+
+}
+
+.ticket-install{
+
+    background:#FFE4C7;
+    color:#C2410C;
+
+}
