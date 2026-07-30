@@ -26,7 +26,8 @@ from database import (
     delete_user,
     reset_password,
     get_all_records,
-    get_recent
+    get_recent,
+    get_total_hours
 
 )
 
@@ -245,6 +246,33 @@ def records():
     )
 
     return jsonify(data)
+
+# =====================================
+# Summary
+# =====================================
+
+@app.route("/summary")
+def summary():
+
+    if "employee_id" not in session:
+
+        return jsonify({
+
+            "hours":0
+
+        })
+
+    total = get_total_hours(
+
+        session["employee_id"]
+
+    )
+
+    return jsonify({
+
+        "hours":round(total,2)
+
+    })
 
 # ==========================================
 # Export TXT

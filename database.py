@@ -469,6 +469,27 @@ def get_recent(owner, limit=20):
 
     return rows
 
+def get_total_hours(owner):
+
+    conn = connect()
+
+    cur = conn.cursor()
+
+    cur.execute("""
+
+        SELECT IFNULL(SUM(hours),0)
+
+        FROM ot_records
+
+        WHERE owner=%s
+
+    """,(owner,))
+
+    total = cur.fetchone()[0]
+
+    conn.close()
+
+    return float(total)
 
 # ==========================================
 # All Records
