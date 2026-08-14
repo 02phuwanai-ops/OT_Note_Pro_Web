@@ -118,35 +118,58 @@ def parse_sms(text: str):
     # Circuit Detection
     # ======================================
 
-    circuit_patterns = [
+    # 1. หา Circuit: โดยตรงก่อน
+    # รองรับ เช่น
+    # Circuit: V00613A
+    # Circuit: I84641A
 
-        # WDS51358
-        r"\b(WDS\d{4,8})\b",
+    circuit = re.search(
+
+        r"(?im)^\s*Circuit\s*:\s*([A-Za-z0-9]+)",
+
+        text
+
+    )
+
+    if circuit:
+
+        result["circuit"] = circuit.group(1).upper()
 
 
-        # V12345B / I12345B / U12345B / O12345B
-        r"\b([VIUOJ]\d{4,8}B)\b",
+    # 2. ถ้าไม่มี Circuit: ค่อยใช้รูปแบบเก่า
+    else:
+
+        circuit_patterns = [
+
+            # WDS51358
+            r"\b(WDS\d{4,8})\b",
+
+            # V12345B / I12345B / U12345B / O12345B
+            r"\b([VIUOJ]\d{4,8}B)\b",
+
+            # J03429 / J03429B
+            r"\b(J\d{4,8}B?)\b"
+
+        ]
 
 
-        # J03429 / J03429B
-        r"\b(J\d{4,8}B?)\b"
+        for pattern in circuit_patterns:
 
-    ]
+            circuit = re.search(
 
+                pattern,
 
-    for pattern in circuit_patterns:
+                text,
 
-        circuit = re.search(
-            pattern,
-            text,
-            re.IGNORECASE
-        )
+                re.IGNORECASE
 
-        if circuit:
+            )
 
-            result["circuit"] = circuit.group(1).upper()
+            if circuit:
 
-            break
+                result["circuit"] = circuit.group(1).upper()
+
+                break
 
 
 
@@ -219,13 +242,9 @@ def parse_sms(text: str):
 
 if __name__ == "__main__":
 
-
     sms = """
-TT202607196530
-WDS52081
-13/07/26
-19:00-21:30
+Ticket: TT202608164574
+FaultDate: 10/08/26 03:10
+Circuit: V00613A
 """
-
-
     print(parse_sms(sms))
