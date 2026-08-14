@@ -466,53 +466,42 @@ function updateOT(){
 
 function calculateOT(){
 
-    let inputs = document.querySelectorAll("input");
+    let inputs=document.querySelectorAll("input");
 
-    let start = inputs[3].value;
-    let finish = inputs[4].value;
+    let start=inputs[3].value;
 
-    if(start == "" || finish == ""){
+    let finish=inputs[4].value;
 
-        inputs[5].value = "";
+    if(start=="" || finish==""){
+
+        inputs[5].value="";
 
         return;
 
     }
 
-    // รองรับ : . , ;
+    // รองรับ :  .  ,  ;
     let s = start.split(/[:.,;]/);
+
     let f = finish.split(/[:.,;]/);
 
-    let startMinute =
-        Number(s[0]) * 60 +
+    let startMinute=
+        Number(s[0])*60+
         Number(s[1]);
 
-    let finishMinute =
-        Number(f[0]) * 60 +
+    let finishMinute=
+        Number(f[0])*60+
         Number(f[1]);
 
-    // ข้ามวัน
-    if(finishMinute < startMinute){
+    if(finishMinute<startMinute){
 
-        finishMinute += 24 * 60;
+        finishMinute+=24*60;
 
     }
 
-    // เวลารวมเป็นนาที
-    let totalMinute =
-        finishMinute - startMinute;
+    let hour=(finishMinute-startMinute)/60;
 
-    // แยก ชั่วโมง + นาที
-    let hours =
-        Math.floor(totalMinute / 60);
-
-    let minutes =
-        totalMinute % 60;
-
-    // แสดงแบบ HH.MM
-    inputs[5].value =
-        hours + "." +
-        String(minutes).padStart(2, "0");
+    inputs[5].value=hour.toFixed(2);
 
 }
 
