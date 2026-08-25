@@ -1,0 +1,20 @@
+# Python Cache Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment & Sensitive Files
+.env
+.venv
+env/
+venv/
+
+# Temp & Export Files
+OT_Report.txt
+exports/
+backup/
+
+# IDE & Editor Settings
+.vscode/
+.idea/

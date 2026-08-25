@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+OT Note Pro Falcon Enterprise
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="manifest" href="/manifest.json">
+
+<link rel="icon" href="/static/favicon.ico">
+
+<meta name="theme-color" content="#5B6CFF">
+
+<link rel="stylesheet"
+href="/static/style.css">
+
+</head>
+
+
+<body class="login-page">
+
+
+<div class="login-card">
+
+
+<h1>
+⚡ OT Note Pro
+</h1>
+
+
+<h2>
+Falcon Enterprise
+</h2>
+
+
+<p>
+OT Management System
+</p>
+
+
+
+<input
+id="employee_id"
+placeholder="Employee ID">
+
+
+<input
+id="password"
+type="password"
+placeholder="Password">
+
+
+
+<button
+class="login-btn"
+onclick="login()">
+
+Login
+
+</button>
+
+
+
+<a href="/register">
+
+Create Account
+
+</a>
+
+
+</div>
+
+
+
+<script>
+
+
+function login(){
+
+
+fetch("/login",{
+
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+"application/json"
+
+},
+
+
+body:JSON.stringify({
+
+employee_id:
+document.getElementById("employee_id").value,
+
+
+password:
+document.getElementById("password").value
+
+})
+
+
+})
+
+
+.then(r=>r.json())
+
+
+.then(data=>{
+
+
+if(data.success){
+
+window.location="/dashboard";
+
+}
+
+else{
+
+alert("Login ไม่ถูกต้อง");
+
+}
+
+
+});
+
+
+}
+
+document.addEventListener(
+"keydown",
+function(event){
+
+    if(event.key === "Enter"){
+
+        login();
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

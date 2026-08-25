@@ -1,0 +1,7 @@
+Flask
+mysql-connector-python>=8.0.0
+bcrypt
+openpyxl
+python-dotenv
+waitress
+gunicorn
