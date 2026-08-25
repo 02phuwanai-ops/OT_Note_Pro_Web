@@ -47,7 +47,7 @@ def init_db():
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     """)
 
-    # 2. ตาราง ot_records (ขยายขอบเขตคอลัมน์ ticket และ owner)
+    # 2. ตาราง ot_records
     cur.execute("""
     CREATE TABLE IF NOT EXISTS ot_records (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -432,3 +432,61 @@ def reset_password(employee_id, new_password):
     cur.close()
     conn.close()
     return updated > 0
+
+
+# ==========================================
+# Admin Helper Functions
+# ==========================================
+
+def ensure_admin():
+    conn = connect()
+    cur = conn.cursor()
+    try:
+        cur.execute("""
+            UPDATE users
+            SET role = 'admin'
+            WHERE employee_id = 'admin'
+        """)
+        conn.commit()
+        print(" [SYSTEM] Admin role updated successfully.")
+    except Exception as e:
+        print(" [SYSTEM] Admin update error:", e)
+    finally:
+        cur.close()
+        conn.close()
+
+
+def fix_admin_account():
+    import bcrypt
+    conn = connect()
+    cur = conn.cursor()
+    try:
+        # เข้ารหัส 123456
+        hashed = bcrypt.hashpw("123456".encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+        
+        # เช็คก่อนว่ามี user ชื่อ admin หรือยัง
+        cur.execute("SELECT id FROM users WHERE employee_id = 'admin'")
+        exists = cur.fetchone()
+        
+        if exists:
+            # ถ้ามีแล้ว ให้ อัปเดตรหัส และ สิทธิ์
+            cur.execute("""
+                UPDATE users 
+                SET password = %s, role = 'admin' 
+                WHERE employee_id = 'admin'
+            """, (hashed,))
+            print(" [SYSTEM] Admin password reset to '123456' & Role updated to 'admin'")
+        else:
+            # ถ้ายังไม่มี ให้ สร้างบัญชี admin ใหม่เลย
+            cur.execute("""
+                INSERT INTO users (employee_id, password, role)
+                VALUES (%s, %s, %s)
+            """, ('admin', hashed, 'admin'))
+            print(" [SYSTEM] Admin account CREATED with password '123456'")
+            
+        conn.commit()
+    except Exception as e:
+        print(" [SYSTEM] Error fixing admin:", e)
+    finally:
+        cur.close()
+        conn.close()

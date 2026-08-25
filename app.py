@@ -27,7 +27,8 @@ from database import (
     reset_password,
     get_all_records,
     get_recent,
-    get_total_hours
+    get_total_hours,
+    fix_admin_account
 
 )
 
@@ -63,36 +64,30 @@ def home():
 # =====================================
 # Parse SMS
 # =====================================
-@app.route("/register", methods=["GET","POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
 
     if request.method == "GET":
         return render_template("register.html")
 
+    # ล้าง Session เก่าที่ค้างอยู่ทิ้งทันที
+    session.clear()
+
     data = request.json
 
     result = register_user(
-
         data["employee_id"],
-
         data["password"]
-
     )
 
     if result:
-
         return jsonify({
-
             "success": True
-
         })
 
     return jsonify({
-
         "success": False,
-
         "message": "Employee ID นี้มีอยู่แล้ว"
-
     })
 
 
@@ -546,3 +541,14 @@ if __name__ == "__main__":
 
     )
 
+if __name__ == "__main__":
+
+    init_db()
+    fix_admin_account()  # <-- เช็คว่าเรียกใช้บรรทัดนี้แล้ว
+
+    serve(
+        app,
+        host="0.0.0.0",
+        port=5000,
+        threads=8
+    )
